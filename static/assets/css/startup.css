@@ -55,10 +55,10 @@ padding: 2% 0%;
 background-color: #343434;
 padding: 3% 0%;
 }
-.video, .thermometer, .order, .social, .statistics {
+.video, .thermometer, .order, .social, .statistics, .support {
 text-align: center;
 }
-.statistics h3, .statistics p {
+.statistics h3, .statistics p , .support{
 color: white;
 }
 
