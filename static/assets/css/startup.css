@@ -81,3 +81,8 @@ font-size: 11px;
 .footer a {
 color: #ccccff;
 }
+
+div.addthis_toolbox {
+  width:180px;
+  margin: 0 auto;
+}
