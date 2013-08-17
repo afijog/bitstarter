@@ -64,7 +64,11 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res){
-  res.render('index', { user: req.user, adminMail: adminMail });
+  var nBackers = 2
+  var nTotalBackers = 50
+  var percBackers = (nBackers * 100 / nTotalBackers)
+  
+  res.render('index', { user: req.user, adminMail: adminMail , nBackers : nBackers, nTotalBackers: nTotalBackers, percBackers : percBackers});
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){

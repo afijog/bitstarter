@@ -25,7 +25,7 @@
                 different in horizontal and vertical layouts, illustrating
                 media queries. -->
                 <div class="linediv-l">
-                <h3>0</h3> <p>backers</p>
+                <h3><%= nBackers %>/<%= nTotalBackers %></h3><p>backers</p> 
                 </div>
               </div>
               <div class="span4">
@@ -44,8 +44,8 @@
             <!-- Bootstrap progress bar -->
             <!-- http://twitter.github.io/bootstrap/components.html#progress -->
             <div class="thermometer progress active">
-              <div class="bar bar-success" style="width: 1%;"></div>
-              <div class="bar bar-warning" style="width: 99%;"></div>
+              <div class="bar bar-success" style="width: <%= percBackers %>%;"><%= percBackers %>%</div>
+              <div class="bar bar-warning" style="width: <%= 100 - percBackers %>%;"></div>
             </div>
           </div>
           <div class="span10 offset1 order">
