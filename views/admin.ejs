@@ -1,6 +1,8 @@
 <div>
 <h3>There are <%= users.length %> supporters, namely:</h3>
 	<ul>
-		<li><%= user.displayName %> - <%= user.emails[0].value %></li>
+		<% for(var i=0; i<users.length; i++) { var user = users[i]; %>
+			<li><%= user.displayName %> - <%= user.emails[0].value %></li>
+		<% } %>
 	</ul>
 </div>

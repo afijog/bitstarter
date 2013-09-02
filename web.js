@@ -17,6 +17,8 @@ var host = process.env.HOST || 'localhost';
 var adminMail = process.env.ADMIN_MAIL;
 var url = 'http://'+host;
 
+var users =[];
+
 if (host === 'localhost') {
 	url = url +':'+port
 }
@@ -64,15 +66,18 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res){
-  var nBackers = 2
-  var nTotalBackers = 50
-  var percBackers = (nBackers * 100 / nTotalBackers)
+  var nBackers = users.length;
+  var nTotalBackers = 100;
+  var nDollarsPerBacker = 50;
+  var percBackers = (nBackers * 100 / nTotalBackers);
   
-  res.render('index', { user: req.user, adminMail: adminMail , nBackers : nBackers, nTotalBackers: nTotalBackers, percBackers : percBackers});
+  res.render('index', { user: req.user, adminMail: adminMail , nBackers : nBackers,
+		nTotalBackers: nTotalBackers, percBackers : percBackers, nDollarsPerBacker : nDollarsPerBacker});
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user, });
+  var user = req.user;
+  res.render('account', { user: user })
 });
 
 app.get('/login', function(req, res){
@@ -81,8 +86,6 @@ app.get('/login', function(req, res){
 
 app.get('/admin', ensureAuthenticated, function(req, res){
   var user = req.user;
-  var users = [];
-  users.push(user);
   res.render('admin', { user: user, adminMail: adminMail, users : users });
 });
 
@@ -106,6 +109,8 @@ app.get('/auth/google',
 app.get('/auth/google/return', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
+	var user = req.user;
+    users.push(user);
     res.redirect('/');
   });
 
